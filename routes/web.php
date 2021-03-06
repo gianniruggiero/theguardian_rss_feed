@@ -22,5 +22,11 @@ Route::get('/{endpoint}', 'Controller@callApi');
 
 // Route to handle any URI format except the "/{endpoint}" format
 Route::fallback(function(){
-    return response ("ERROR handled by web.php / URI not valid, resource not found", 404);
+    $error_data = [
+        "status_code" => 404,
+        "message" => "The requested resource could not be found."
+    ];
+    $error_xml = view('error_xml', compact('error_data'));
+    return response ($error_xml, 404)->header('Content-Type', 'text/xml');
+    // return response ("ERROR handled by web.php / URI not valid, resource not found", 404);
 });

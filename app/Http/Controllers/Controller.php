@@ -19,11 +19,12 @@ class Controller extends BaseController
 
         // NOT VALID Endpoint string format 
         if (!$validEndpoint){
-            $content = [
-                "status" => 404,
-                "result" => "ERROR: Resource not found - handled by Controller@callApi"
+            $error_data = [
+                "status_code" => 404,
+                "message" => "The requested resource could not be found."
             ];
-            return response ($content, 404);
+            $error_xml = view('error_xml', compact('error_data'));
+            return response ($error_xml, 404)->header('Content-Type', 'text/xml');
         };
 
         // CA CERTIFICATE / path to the cacert.pem file, SSL certificate
@@ -54,8 +55,13 @@ class Controller extends BaseController
             // Reply to the client the RSS Feed / XML format
             return response($rss_feed, 200)->header('Content-Type', 'text/xml');
         } else {
-            // Reply to the client with Error message
-            return response ("ERROR: ".$apiStatusCode." - ".$apiErrorPhrase." - handled by Controller@callApi", $apiStatusCode);
+            $error_data = [
+                "status_code" => 404,
+                "message" => "The requested resource could not be found."
+            ];
+            // Fill the RSS feed view-template with error data
+            $error_xml = view('error_xml', compact('error_data'));
+            return response ($error_xml, 404)->header('Content-Type', 'text/xml');
         }
 
     }
