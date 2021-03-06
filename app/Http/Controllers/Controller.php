@@ -48,16 +48,16 @@ class Controller extends BaseController
 
         // REPLY to the client
         if ($apiStatusCode == 200) {
-            $response = $client->get($endpoint.'?api-key='.$api_key.'&format='.$format_key,
-                ['verify' => false]); 
             $response_json = json_decode($response->getBody(), true);
-            return response ($response_json, 200);
+            // Fill the RSS feed view-template with json data
+            $rss_feed = view('rss_feed', compact('response_json'));
+            // Reply to the client the RSS Feed / XML format
+            return response($rss_feed, 200)->header('Content-Type', 'text/xml');
         } else {
-            return response ("ERROR: ".$apiStatusCode." - ".$apiErrorPhrase, $apiStatusCode);
+            // Reply to the client with Error message
+            return response ("ERROR: ".$apiStatusCode." - ".$apiErrorPhrase." - handled by Controller@callApi", $apiStatusCode);
         }
 
-        // Call to test view
-        // return view('test', compact('response_json'));
     }
 
 }
