@@ -15,7 +15,12 @@ class Controller extends BaseController
 
     public function callApi($endpoint) {
 
-        $endpointIsValid = !preg_match('/[^a-z\-]/', $endpoint);
+        // VALIDATION Endpoint string
+        if(!($endpoint=="search" || $endpoint=="editions" || $endpoint=="sections" || $endpoint=="tags")){
+            $endpointIsValid = !preg_match('/[^a-z\-]/', $endpoint);
+        } else {
+            $endpointIsValid = false;
+        }
 
         // NOT VALID Endpoint string format, return XML error message
         if (!$endpointIsValid){
