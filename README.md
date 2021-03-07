@@ -13,4 +13,4 @@ Please check the official Laravel installation guide for [server requirements](h
 - In your project root, rename the **.env.example** file to **.env**
 - Run `php artisan key:generate`
 - Run `php -S localhost:8000`
-- Access the application at [http://localhost:8000](http://localhost:8000)
+- Access the application at **http://localhost:8000**
