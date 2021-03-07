@@ -1,2 +1,5 @@
-{{-- @dd($error_data); --}}
-<response message="{{$error_data["message"]}}" status="error" code="{{$error_data["status_code"]}}"/>
+<error>
+    <status>error</status>
+    <code>404</code>
+    <message>The requested resource could not be found.</message>
+</error>

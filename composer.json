@@ -1,10 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "gr/theguardian_rss_feed",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The Guardian RSS Feed news section - server side application",
     "keywords": [
-        "framework",
-        "laravel"
+        "rss",
+        "news",
+        "feed"
     ],
     "license": "MIT",
     "require": {
@@ -17,7 +18,6 @@
     },
     "require-dev": {
         "facade/ignition": "^2.0",
-        "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"

@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 // Route to controller calling The Guardian API
 Route::get('/{endpoint}', 'Controller@callApi');
 
@@ -28,5 +24,4 @@ Route::fallback(function(){
     ];
     $error_xml = view('error_xml', compact('error_data'));
     return response ($error_xml, 404)->header('Content-Type', 'text/xml');
-    // return response ("ERROR handled by web.php / URI not valid, resource not found", 404);
 });
