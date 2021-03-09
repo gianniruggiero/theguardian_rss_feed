@@ -33,13 +33,13 @@ class Controller extends BaseController
         };
 
         // VALID Endpoint string format, call the API
-        $client = new Client(['base_uri' => $_ENV['API_THEGUARDIAN_ENDPOINT']]);
+        $client = new Client(['base_uri' => env('API_THEGUARDIAN_ENDPOINT')]);
         $format_key ="json";
 
         // Check the GuzzleHttp RequestException to handle API error status code,
         // otherwise the status codes (except 200) are not intercepted and create a Laravel error
         try {
-            $response = $client->get($endpoint.'?api-key='.$_ENV['API_THEGUARDIAN_KEY'].'&format='.$format_key,
+            $response = $client->get($endpoint.'?api-key='.env('API_THEGUARDIAN_KEY').'&format='.$format_key,
                 // false value to avoid "cUrl error 60" during the call, due to the absence of local SSL certificate
                 ['verify' => false]);
             $apiStatusCode = $response->getStatusCode();            

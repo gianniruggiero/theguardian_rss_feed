@@ -11,6 +11,7 @@ Please check the official Laravel installation guide for [server requirements](h
 - Open the console and cd your project root directory
 - Run `composer install`
 - In your project root, rename the **.env.example** file to **.env**
+- Run `php artisan config:clear`
 - Run `php artisan key:generate`
-- Run `php -S localhost:8000`
+- Run `php artisan serve`
 - Access the application at **http://localhost:8000**
